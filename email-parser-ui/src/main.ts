@@ -22,7 +22,7 @@ createApp(App)
             serverUrl: 'http://localhost:8200',
             secretToken: 'changeme',
             transactionSampleRate: 1.0,
-            logLevel: 'Debug',
+            logLevel: 'debug',
         },
     })
     .mount('#app')

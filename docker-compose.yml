@@ -72,5 +72,35 @@ services:
       retries: 12
       test: curl --write-out 'HTTP %{http_code}' --fail --silent --output /dev/null http://localhost:8200/
 
+  backend:
+    build: ./phisher-man
+    container_name: phisher-man
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./phisher-man:/app
+
+  frontend:
+    build:
+      context: ./email-parser-ui
+      dockerfile: Dockerfile
+    container_name: phishing-frontend
+    volumes:
+      - ./email-parser-ui:/app
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: phishing-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./email-parser-ui/dist:/usr/share/nginx/html
+    depends_on:
+      - frontend
+      - backend
+
 volumes:
   esdata:
