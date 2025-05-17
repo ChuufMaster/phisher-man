@@ -1,0 +1,16 @@
+*.log
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*__pycache__
+*.bak
+doc/doc.bbl
+doc/doc.blg
+doc/doc.idx
+doc/doc.ilg
+doc/doc.ind
+doc/doc.out
+doc/doc.toc
+email-parser-ui/.vscode
+dataset
